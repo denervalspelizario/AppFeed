@@ -12,6 +12,11 @@
   --green-500: #00875f;
 }
 
+:focus { 
+  outline: transparent; /*Ao clicar em qualquer elemento não tera alteracao por default*/
+  box-shadow: 0 0 0 2px var(--green-500); /* Ao clicar em algum box como um form a borda fica na cor var(--green-500) */
+}
+
 * {
   margin: 0;
   padding: 0;
