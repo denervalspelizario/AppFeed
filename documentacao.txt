@@ -1,5 +1,0 @@
- -- Limpar projeto
- -- Criar Css global
- -- criar o componente header, estilizar e importar a app.jsx
- -- criar o componente sidebar, estilizar e importar a app.jsx
- -- Obs neste projeto os icons serão da phosphor-icons   o comando para instalar a biblioteca é npm install phosphor-react
