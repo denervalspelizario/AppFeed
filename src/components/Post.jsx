@@ -26,13 +26,9 @@ export function Post(post) {
     setNewCommentText('') // zerando os dados de textarea atravez do state 
   }
 
-  //Funcão pega os dados de textarea
-  function handleNewCommentChange(){
-    setNewCommentText(event.target.value)
 
-  }
 
-  // Função para deletar comentário
+// Função para DELETAR comentário
   function deleteCommentData(commentToDelete){
 
     // filtrando todos os comentarios diferente de comentarios recebido(commentToDelete)
@@ -45,10 +41,18 @@ export function Post(post) {
     setComments(commentsWithoutDeleteOne);
   }
 
-  //Função 
+// Funcão pega os dados de textarea
+  function handleNewCommentChange(){
+    event.target.setCustomValidity('') // como em handleNewCommentInvalid trata o erro vazio aqui precisa zerar esse tratamento
+    setNewCommentText(event.target.value)
+  }  
+
+// Função para tratar comentários considerados inválidos
   function handleNewCommentInvalid(){
-    console.log(event)
+    event.target.setCustomValidity('Esse campo é obrigatório') //setCustomValidity = erro de campo vazio, ajustando msg
   }
+
+  const isNewCommentEmpty = newCommentText.length === 0;
 
   return (
     <article className={styles.post}>
@@ -97,10 +101,15 @@ export function Post(post) {
         onInvalid={handleNewCommentInvalid} //onInvalid sempre que campo do input estiver invalido(netse caso vazio) então  chamara essa funcao              
       />
       <footer>
-        <button type='submit'>Publicar</button>
+        <button 
+          type='submit'
+          disabled={isNewCommentEmpty} // sera desabilitado o btn se na state newComment não tiber nenhum dados
+        >
+          Publicar
+        </button>
       </footer>
      </form>
-
+   
      <div className={styles.commentList}>
       {
         comments.map(comment => { // fazendo um map
